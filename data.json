@@ -1,0 +1,178 @@
+{
+  "drinks": [
+    {
+      "number": 73,
+      "drink": "Latte",
+      "displayName": "Whole Bean",
+      "sugar": false
+    },
+    {
+      "number": 74,
+      "drink": "Latte",
+      "displayName": "Whole Bean",
+      "sugar": true
+    },
+    {
+      "number": 79,
+      "drink": "Latte",
+      "displayName": "Decaf instant",
+      "sugar": false
+    },
+    {
+      "number": 80,
+      "drink": "Latte",
+      "displayName": "Decaf instant",
+      "sugar": true
+    },
+    {
+      "number": 75,
+      "drink": "Cappuccino",
+      "displayName": "Whole Bean",
+      "sugar": false
+    },
+    {
+      "number": 76,
+      "drink": "Cappuccino",
+      "displayName": "Whole Bean",
+      "sugar": true
+    },
+    {
+      "number": 77,
+      "drink": "Cappuccino",
+      "displayName": "Decaf instant",
+      "sugar": false
+    },
+    {
+      "number": 78,
+      "drink": "Cappuccino",
+      "displayName": "Decaf instant",
+      "sugar": true
+    },
+    {
+      "number": 60,
+      "drink": "Coffee",
+      "displayName": "Americano",
+      "sugar": false
+    },
+    {
+      "number": 61,
+      "drink": "Coffee",
+      "displayName": "Americano",
+      "sugar": true
+    },
+    {
+      "number": 62,
+      "drink": "Coffee",
+      "displayName": "Flat White",
+      "sugar": false
+    },
+    {
+      "number": 63,
+      "drink": "Coffee",
+      "displayName": "Flat White",
+      "sugar": true
+    },
+    {
+      "number": 50,
+      "drink": "Tea",
+      "displayName": "Black Tea",
+      "sugar": false
+    },
+    {
+      "number": 51,
+      "drink": "Tea",
+      "displayName": "Black Tea",
+      "sugar": true
+    },
+    {
+      "number": 52,
+      "drink": "Tea",
+      "displayName": "Tea with milk",
+      "sugar": false
+    },
+    {
+      "number": 53,
+      "drink": "Tea",
+      "displayName": "Tea with milk",
+      "sugar": true
+    },
+    {
+      "number": 90,
+      "drink": "Tea",
+      "displayName": "Hot water",
+      "sugar": false
+    },
+    {
+      "number": 55,
+      "drink": "Espresso",
+      "displayName": "Single Beans",
+      "sugar": false
+    },
+    {
+      "number": 56,
+      "drink": "Espresso",
+      "displayName": "Single Beans",
+      "sugar": true
+    },
+    {
+      "number": 38,
+      "drink": "Espresso",
+      "displayName": "Decaf instant",
+      "sugar": false
+    },
+    {
+      "number": 39,
+      "drink": "Espresso",
+      "displayName": "Decaf instant",
+      "sugar": true
+    },
+    {
+      "number": 48,
+      "drink": "Mocha",
+      "displayName": "Whole Bean",
+      "sugar": false
+    },
+    {
+      "number": 49,
+      "drink": "Mocha",
+      "displayName": "Decaf instant",
+      "sugar": false
+    },
+    {
+      "number": 70,
+      "drink": "Chocolate",
+      "displayName": "Hot Chocolate",
+      "sugar": false
+    },
+    {
+      "number": 72,
+      "drink": "Chocolate",
+      "displayName": "Creamichoc",
+      "sugar": false
+    },
+    {
+      "number": 22,
+      "drink": "Coffee Instant",
+      "displayName": "Decaf Black",
+      "sugar": false
+    },
+    {
+      "number": 23,
+      "drink": "Coffee Instant",
+      "displayName": "Decaf Black",
+      "sugar": true
+    },
+    {
+      "number": 24,
+      "drink": "Coffee Instant",
+      "displayName": "Decaf White",
+      "sugar": false
+    },
+    {
+      "number": 25,
+      "drink": "Coffee Instant",
+      "displayName": "Decaf White",
+      "sugar": true
+    }
+  ]
+}

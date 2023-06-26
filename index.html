@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Coffee machine</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script type="module">
+      const addClass = (el, classes) => {
+        classes.map((cls) => {
+          el.classList.add(cls);
+        });
+      };
+
+      const el = document.createElement("div");
+      addClass(el, ["App"]);
+
+      const sugarLabel = (sugar) => {
+        if (sugar) {
+          return "Sugar";
+        } else {
+          return "No sugar";
+        }
+      };
+
+      const Table = (drinks) => {
+        const table = document.createElement("table");
+        let tr = document.createElement("tr");
+        drinks
+          .map(({ sugar }) => sugarLabel(sugar))
+          .map((label) => {
+            const td = document.createElement("td");
+            td.appendChild(document.createTextNode(label));
+            tr.appendChild(td);
+          });
+        table.appendChild(tr);
+        tr = document.createElement("tr");
+        drinks
+          .map(({ number }) => number.toString())
+          .map((label) => {
+            const td = document.createElement("td");
+            td.appendChild(document.createTextNode(label));
+            tr.appendChild(td);
+          });
+        table.appendChild(tr);
+        return table;
+      };
+
+      const Card = (label, drinks) => {
+        const el = document.createElement("div");
+        addClass(el, ["Card"]);
+
+        // Heading
+        const h2 = document.createElement("h2");
+        h2.appendChild(document.createTextNode(label));
+        el.appendChild(h2);
+
+        // Organise data
+        const rows = drinks.reduce((accumulator, item) => {
+          const { number, sugar } = item;
+          const index = sugar ? 1 : 0;
+          if (!(item.displayName in accumulator)) {
+            accumulator[item.displayName] = [];
+          }
+          // Ordered by no sugar/sugar
+          accumulator[item.displayName][index] = { number, sugar };
+          return accumulator;
+        }, {});
+
+        // List
+        const div = document.createElement("div");
+        addClass(div, ["List"]);
+        Object.entries(rows).map(([label, drinks]) => {
+          const section = document.createElement("div");
+          addClass(section, ["Section"]);
+          const h3 = document.createElement("h3");
+          h3.appendChild(document.createTextNode(label));
+          section.appendChild(h3);
+          section.appendChild(Table(drinks));
+          div.appendChild(section);
+        });
+        el.appendChild(div);
+
+        return el;
+      };
+
+      // UI
+      const render = (drinks) => {
+        // Organise application state
+        const state = drinks.reduce((accumulator, current) => {
+          if (current.drink in accumulator) {
+            accumulator[current.drink].push(current);
+          } else {
+            accumulator[current.drink] = [current];
+          }
+          return accumulator;
+        }, {});
+
+        // Add cards
+        Object.entries(state).map(([label, drinks]) => {
+          el.appendChild(Card(label, drinks));
+        });
+      };
+
+      // I/O
+      fetch("data.json")
+        .then((response) => response.json())
+        .then((payload) => render(payload.drinks));
+
+      document.body.appendChild(el);
+    </script>
+  </body>
+</html>

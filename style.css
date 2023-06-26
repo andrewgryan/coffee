@@ -1,0 +1,29 @@
+.App {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.Card {
+  padding-block: 0.25rem;
+  padding-inline: 0.5rem;
+  border: 0.25rem solid black;
+  border-radius: 0.5rem;
+}
+
+.List {
+  display: grid;
+}
+
+.Section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: 1fr 1fr;
+}

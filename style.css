@@ -1,12 +1,22 @@
+:root {
+  --font-family: 'Agdasima', sans-serif;
+  --size: 1rem;
+}
+
+body {
+  margin: 0;
+}
+
 .App {
+  font-family: var(--font-family);
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
+  margin: var(--size);
+  gap: var(--size);
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .Card {
-  padding-block: 0.25rem;
-  padding-inline: 0.5rem;
+  padding: var(--size);
   border: 0.25rem solid black;
   border-radius: 0.5rem;
 }

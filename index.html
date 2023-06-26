@@ -18,10 +18,30 @@
         classes.map((cls) => {
           el.classList.add(cls);
         });
+        return el;
       };
 
-      const el = document.createElement("div");
-      addClass(el, ["App"]);
+      const tag =
+        (elementName) =>
+        (...children) => {
+          const el = document.createElement(elementName);
+          children.forEach((child) => {
+            if (typeof child === "string" || child instanceof String) {
+              el.appendChild(document.createTextNode(child));
+            } else {
+              el.appendChild(child);
+            }
+          });
+          return el;
+        };
+
+      // Tag helpers
+      const div = tag("div");
+      const h2 = tag("h2");
+      const h3 = tag("h3");
+      const table = tag("table");
+      const tr = tag("tr");
+      const td = tag("td");
 
       const sugarLabel = (sugar) => {
         if (sugar) {
@@ -32,37 +52,25 @@
       };
 
       const Table = (drinks) => {
-        const table = document.createElement("table");
-        let tr = document.createElement("tr");
-        drinks
-          .map(({ sugar }) => sugarLabel(sugar))
-          .map((label) => {
-            const td = document.createElement("td");
-            td.appendChild(document.createTextNode(label));
-            tr.appendChild(td);
-          });
-        table.appendChild(tr);
-        tr = document.createElement("tr");
-        drinks
-          .map(({ number }) => number.toString())
-          .map((label) => {
-            const td = document.createElement("td");
-            td.appendChild(document.createTextNode(label));
-            tr.appendChild(td);
-          });
-        table.appendChild(tr);
-        return table;
+        return table(
+          tr(
+            ...drinks
+              .map(({ sugar }) => sugarLabel(sugar))
+              .map((label) => {
+                return td(label);
+              })
+          ),
+          tr(
+            ...drinks
+              .map(({ number }) => number.toString())
+              .map((label) => {
+                return td(label);
+              })
+          )
+        );
       };
 
       const Card = (label, drinks) => {
-        const el = document.createElement("div");
-        addClass(el, ["Card"]);
-
-        // Heading
-        const h2 = document.createElement("h2");
-        h2.appendChild(document.createTextNode(label));
-        el.appendChild(h2);
-
         // Organise data
         const rows = drinks.reduce((accumulator, item) => {
           const { number, sugar } = item;
@@ -75,25 +83,22 @@
           return accumulator;
         }, {});
 
-        // List
-        const div = document.createElement("div");
-        addClass(div, ["List"]);
-        Object.entries(rows).map(([label, drinks]) => {
-          const section = document.createElement("div");
-          addClass(section, ["Section"]);
-          const h3 = document.createElement("h3");
-          h3.appendChild(document.createTextNode(label));
-          section.appendChild(h3);
-          section.appendChild(Table(drinks));
-          div.appendChild(section);
-        });
-        el.appendChild(div);
+        // Debug
+        let tbl = table(
+          tr(td(""), td("No sugar"), td("Sugar")),
+          ...Object.entries(rows).map(([label, drinks]) => {
+            return tr(
+              td(label),
+              ...drinks.map((drink) => td(drink.number.toString()))
+            );
+          })
+        );
 
-        return el;
+        return addClass(div(h2(label), tbl), ["Card"]);
       };
 
       // UI
-      const render = (drinks) => {
+      const render = (parent, drinks) => {
         // Organise application state
         const state = drinks.reduce((accumulator, current) => {
           if (current.drink in accumulator) {
@@ -105,17 +110,24 @@
         }, {});
 
         // Add cards
-        Object.entries(state).map(([label, drinks]) => {
-          el.appendChild(Card(label, drinks));
-        });
+        parent.appendChild(
+          addClass(
+            div(
+              ...Object.entries(state).map(([label, drinks]) => {
+                return Card(label, drinks);
+              })
+            ),
+            ["App"]
+          )
+        );
       };
 
       // I/O
       fetch("data.json")
         .then((response) => response.json())
-        .then((payload) => render(payload.drinks));
-
-      document.body.appendChild(el);
+        .then((payload) => {
+          render(document.body, payload.drinks);
+        });
     </script>
   </body>
 </html>

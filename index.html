@@ -43,33 +43,6 @@
       const tr = tag("tr");
       const td = tag("td");
 
-      const sugarLabel = (sugar) => {
-        if (sugar) {
-          return "Sugar";
-        } else {
-          return "No sugar";
-        }
-      };
-
-      const Table = (drinks) => {
-        return table(
-          tr(
-            ...drinks
-              .map(({ sugar }) => sugarLabel(sugar))
-              .map((label) => {
-                return td(label);
-              })
-          ),
-          tr(
-            ...drinks
-              .map(({ number }) => number.toString())
-              .map((label) => {
-                return td(label);
-              })
-          )
-        );
-      };
-
       const Card = (label, drinks) => {
         // Organise data
         const rows = drinks.reduce((accumulator, item) => {

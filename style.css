@@ -12,6 +12,10 @@ table {
   width: 100%;
 }
 
+h2, h3 {
+  margin-block: 0;
+}
+
 .App {
   font-family: var(--font-family);
   font-size: var(--font-size);

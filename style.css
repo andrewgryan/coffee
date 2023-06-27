@@ -3,6 +3,15 @@
   --size: 1rem;
   --font-size: clamp(2rem, 4vw + 1rem, 3rem);
   --color-light: hsl(0deg 0% 60%);
+  --surface: hsl(0deg 0% 100%);
+  --highlight: hsl(0deg 0% 10%);
+}
+
+@media(prefers-color-scheme: dark) {
+  :root {
+    --surface: hsl(0deg 0% 10%);
+    --highlight: hsl(0deg 0% 90%);
+  }
 }
 
 .text-light {
@@ -11,6 +20,8 @@
 
 body {
   margin: 0;
+  color: var(--highlight);
+  background-color: var(--surface);
 }
 
 table {

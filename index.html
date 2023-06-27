@@ -14,12 +14,14 @@
   </head>
   <body>
     <script type="module">
-      const addClass = (el, classes) => {
-        classes.map((cls) => {
-          el.classList.add(cls);
-        });
-        return el;
-      };
+      const cls =
+        (...classes) =>
+        (el) => {
+          classes.map((cls) => {
+            el.classList.add(cls);
+          });
+          return el;
+        };
 
       const tag =
         (elementName) =>
@@ -58,16 +60,16 @@
 
         // Debug
         let tbl = table(
-          tr(td(""), td("No sugar"), td("Sugar")),
+          cls("text-light")(tr(td(""), td("No sugar"), td("Sugar"))),
           ...Object.entries(rows).map(([label, drinks]) => {
             return tr(
-              td(label),
+              cls("text-light")(td(label)),
               ...drinks.map((drink) => td(drink.number.toString()))
             );
           })
         );
 
-        return addClass(div(h2(label), tbl), ["Card"]);
+        return cls("Card")(div(h2(label), tbl));
       };
 
       // UI
@@ -83,14 +85,15 @@
         }, {});
 
         // Add cards
+        // cls("faded")(div())
+
         parent.appendChild(
-          addClass(
+          cls("App")(
             div(
               ...Object.entries(state).map(([label, drinks]) => {
                 return Card(label, drinks);
               })
-            ),
-            ["App"]
+            )
           )
         );
       };

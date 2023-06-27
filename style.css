@@ -2,6 +2,11 @@
   --font-family: 'Agdasima', sans-serif;
   --size: 1rem;
   --font-size: clamp(2rem, 4vw + 1rem, 3rem);
+  --color-light: hsl(0deg 0% 60%);
+}
+
+.text-light {
+  color: var(--color-light);
 }
 
 body {

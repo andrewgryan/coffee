@@ -58,16 +58,25 @@
           return accumulator;
         }, {});
 
-        // Debug
-        let tbl = table(
-          cls("text-light")(tr(td(""), td("No sugar"), td("Sugar"))),
-          ...Object.entries(rows).map(([label, drinks]) => {
-            return tr(
-              cls("text-light")(td(label)),
-              ...drinks.map((drink) => td(drink.number.toString()))
-            );
-          })
+        const firstRow = cls("text-light")(
+          tr(td(""), td("No sugar"), td("Sugar"))
         );
+        const otherRows = Object.entries(rows).map(([label, drinks]) => {
+          return tr(
+            cls("text-light")(td(label)),
+            ...drinks.map((drink) => td(drink.number.toString()))
+          );
+        });
+
+        const varieties = Math.max(
+          ...Object.entries(rows).map((row) => row[1].length)
+        );
+        let tbl;
+        if (varieties === 2) {
+          tbl = table(firstRow, ...otherRows);
+        } else {
+          tbl = table(...otherRows);
+        }
 
         return cls("Card")(div(h2(label), tbl));
       };
